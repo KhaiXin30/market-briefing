@@ -1,6 +1,21 @@
 # market-briefing-agent
 
-Daily pre-market briefing agent (RSS-first) with Postgres storage and SendGrid email delivery.
+This repository builds a **daily market briefing agent** that delivers a **5-minute pre-market email** focused on **US stocks + ADRs/major foreign tickers trading in US hours** (e.g., TSM, ASML), with emphasis on **Tech, Semiconductors, Oil & Gas, and Retail**.
+
+The agent runs an end-to-end pipeline that:
+- **Ingests news from free-first RSS + primary sources** (government releases, company IR, etc.) using a strict **source allowlist**
+- **Extracts and deduplicates** articles by clustering similar headlines into story groups
+- Generates a structured briefing with:
+  - **Top 5 overnight market stories**
+  - **Sector snapshots** (Tech / Semis / Oil & Gas / Retail)
+  - **Premarket portfolio data** (pre-market pricing/changes for the tracked watchlist)
+  - **Daily movers** (top **gainers and losers**) with catalysts **only when supported by allowlisted sources**
+- Enforces **no hallucinations** by requiring **citations for every claim** and storing **evidence spans** (verbatim supporting text) that are checked by a **validation gate** before anything is sent
+- Outputs the briefing in **plain, easy-to-understand language**, avoiding jargon where possible and explaining technical terms inline when needed
+
+The system is designed to be **trustworthy-first**:
+- If a claim cannot be supported by retrieved sources, it is omitted or explicitly labeled as **“not confirmed by allowlisted sources yet.”**
+- A **validation gate** blocks sending if citations/evidence are missing or sources are not approved.
 
 ## What it does
 - Ingests RSS feeds into Postgres.
