@@ -6,6 +6,7 @@ Daily pre-market briefing agent (RSS-first) with Postgres storage and SendGrid e
 - Ingests RSS feeds into Postgres.
 - Builds a weekday or weekend briefing with citations.
 - Sends via SendGrid (or prints to stdout with `--no-send`).
+- Adds a portfolio watch section plus optional premarket quotes.
 
 ## Setup
 1) Start Postgres locally:
@@ -25,15 +26,21 @@ pip install -r requirements.txt
 
 4) Run once (no email):
 ```bash
-python src/main.py --no-send
+python -m src.main --no-send
 ```
+
+## Supabase (Hosted Postgres)
+If you want GitHub Actions to run without a local database, use Supabase:
+1) Create a project at https://supabase.com
+2) Settings → Database → Connection string → URI
+3) Set GitHub Actions secret `DATABASE_URL` to that URI (URL-encode your password if it has special characters).
 
 ## Config
 RSS sources and allowlist are in `config/sources.yaml`. Add more feeds and allowlisted domains as you expand coverage.
 Portfolio tracking keywords live in `config/sources.yaml` under `portfolio`.
 
 ## GitHub Actions
-The workflow runs daily at 11:00 UTC (7:00am ET during standard time). Set these repo secrets:
+The workflow runs daily at 11:00 and 12:00 UTC (covers 7:00am ET across DST). Set these repo secrets:
 - `DATABASE_URL`
 - `SENDGRID_API_KEY`
 - `FROM_EMAIL`
@@ -43,14 +50,12 @@ The workflow runs daily at 11:00 UTC (7:00am ET during standard time). Set these
 - `HF_BASE_URL` (optional, override HF base URL)
 - `HF_MODEL` (optional, override HF model id)
 - `VERIFY_LINKS` (optional, set to `1` to drop items with inaccessible links)
-- `OPENFIGI_API_KEY` (optional, for OpenFIGI fallback)
 
 ## Notes
 - Movers are optional and rely on free RSS sources. Add them to `movers_feeds` when available.
 - FMP movers use the `FMP_API_KEY` env var and show price/percent moves only (no catalysts).
 - Portfolio premarket quotes use FMP `stable/quote` and require `FMP_API_KEY`.
 - Llama summaries use Hugging Face Router with `HF_TOKEN`. Defaults to `meta-llama/Llama-3.2-1B-Instruct:novita`.
-- Mover company blurbs use Yahoo Finance (with rate-limited requests) and fall back to FMP profile if available.
-- If FMP fails, the system falls back to Wikipedia (company name) and Yahoo Finance.
+- Mover company blurbs use FMP profiles first, then Wikipedia (company name), then Yahoo Finance.
 - Link verification adds extra HTTP requests and can slow ingestion; enable only if needed.
 - The agent only summarizes RSS titles/snippets for trustworthiness.

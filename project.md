@@ -46,17 +46,19 @@ Free-first constraints:
 ---
 
 ## 5) Output Format (5-minute read)
-Target: **350–550 words** total.
+Target: **350–650 words** total.
 
 ### Weekdays (Pre-Market)
-1) **Overnight / Must-Know (Top 5)** — 5 bullets  
+1) **Overnight / Must-Know (Top 5)** — LLM summarizes top 10 items into 5 bullets  
 2) **Sector Snapshot** — 1 bullet each:
    - Tech
    - Semiconductors
    - Oil & Gas
    - Retail
-3) **Movers (US + ADRs)** — Top 5 gainers + Top 5 losers  
+3) **Movers (US + ADRs)** — Top 5 gainers + Top 5 losers (include short company “About” if available)  
 4) **Today’s Calendar** — max 5 items (econ releases, earnings, major events)
+5) **Portfolio Watch** — optional; keyword match from configured portfolio
+6) **Portfolio Premarket** — optional; quotes for configured portfolio symbols
 
 ### Weekends (Weekend Wrap)
 1) Top 5 weekend developments  
@@ -98,9 +100,19 @@ Company IR (add as needed):
 Reputable publishers (availability varies by region/time):
 - cnbc.com
 - apnews.com (if RSS available in your region)
+- finance.yahoo.com
+- nasdaq.com
+- investors.com (IBD)
 - other reputable outlets that provide RSS and accessible article text
 
 > Note: Some publishers restrict scraping or provide only short snippets. That’s okay for V1: if full text is unavailable, you either (a) skip it or (b) summarize only the snippet and clearly cite it.
+
+### 6.4 LLM summarization
+- Use a local or hosted open-source model to summarize RSS snippets into clear, journalist-style bullets.
+- If the model is unavailable, fall back to the RSS snippet.
+
+### 6.5 Scheduling
+- GitHub Actions runs at 11:00 and 12:00 UTC to cover 7:00am ET across DST.
 
 ### 6.3 Starter RSS feed list (example)
 You will likely expand/adjust these based on what’s accessible.
