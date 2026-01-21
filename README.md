@@ -1,6 +1,6 @@
 # market-briefing-agent
 
-This repository builds a **daily market briefing agent** that delivers a **5-minute pre-market email** focused on **US stocks + ADRs/major foreign tickers trading in US hours** (e.g., TSM, ASML), with emphasis on **Tech, Semiconductors, Oil & Gas, and Retail**.
+This repository builds a **daily market briefing agent** that delivers a **5-minute read pre-market email** focused on **US stocks + ADRs/major foreign tickers trading in US hours** (e.g., TSM, ASML), with emphasis on **Tech, Semiconductors, Oil & Gas, and Retail** everyday at 7am ET.
 
 The agent runs an end-to-end pipeline that:
 - **Ingests news from free-first RSS + primary sources** (government releases, company IR, etc.) using a strict **source allowlist**
