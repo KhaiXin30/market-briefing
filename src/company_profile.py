@@ -11,20 +11,20 @@ FMP_BASE = "https://financialmodelingprep.com/api/v3"
 
 
 @lru_cache(maxsize=256)
-def fetch_profile(symbol: str) -> tuple[str, str] | None:
-    if not symbol:
+def fetch_profile(symbol: str, company_name: str | None = None) -> tuple[str, str] | None:
+    if not symbol and not company_name:
         return None
     time.sleep(1.5)
-    summary = _fetch_yahoo_summary(symbol)
-    if summary:
-        return summary, "Yahoo Finance"
     fmp_summary = _fetch_fmp_profile(symbol)
     if fmp_summary:
         return fmp_summary, "FMP"
-    from src.openfigi import fetch_openfigi_summary
-    figi_summary = fetch_openfigi_summary(symbol)
-    if figi_summary:
-        return figi_summary, "OpenFIGI"
+    from src.wikipedia import fetch_summary
+    wiki_summary = fetch_summary(company_name or "")
+    if wiki_summary:
+        return wiki_summary, "Wikipedia"
+    summary = _fetch_yahoo_summary(symbol)
+    if summary:
+        return summary, "Yahoo Finance"
     return None
 
 

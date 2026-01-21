@@ -51,6 +51,6 @@ The workflow runs daily at 11:00 UTC (7:00am ET during standard time). Set these
 - Portfolio premarket quotes use FMP `stable/quote` and require `FMP_API_KEY`.
 - Llama summaries use Hugging Face Router with `HF_TOKEN`. Defaults to `meta-llama/Llama-3.2-1B-Instruct:novita`.
 - Mover company blurbs use Yahoo Finance (with rate-limited requests) and fall back to FMP profile if available.
-- If FMP fails, the system falls back to OpenFIGI (if available) for basic company info.
+- If FMP fails, the system falls back to Wikipedia (company name) and Yahoo Finance.
 - Link verification adds extra HTTP requests and can slow ingestion; enable only if needed.
 - The agent only summarizes RSS titles/snippets for trustworthiness.

@@ -436,12 +436,14 @@ def _augment_mover_summary(
     summary = item.get("summary", "")
     title = item.get("title", "")
     symbol = title.split()[1] if title.startswith(("Gainer:", "Loser:")) else title.split()[0]
+    candidates = _extract_company_candidates(title)
+    company_name = candidates[0] if candidates else ""
     if not symbol:
         return summary
     if symbol in cache:
         about_info = cache[symbol]
     else:
-        about_info = fetch_summary_func(symbol)
+        about_info = fetch_summary_func(symbol, company_name)
         cache[symbol] = about_info
     if not about_info:
         if summary:

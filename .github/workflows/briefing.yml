@@ -3,6 +3,7 @@ name: Daily Market Briefing
 on:
   schedule:
     - cron: "0 11 * * *"
+    - cron: "0 12 * * *"
   workflow_dispatch: {}
 
 jobs:
@@ -21,4 +22,4 @@ jobs:
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
           FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
           TO_EMAILS: ${{ secrets.TO_EMAILS }}
-        run: python src/main.py
+        run: python -m src.main
