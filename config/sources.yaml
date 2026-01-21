@@ -1,0 +1,80 @@
+allowlist_domains:
+  - cnbc.com
+  - apnews.com
+  - finance.yahoo.com
+  - news.yahoo.com
+  - marketwatch.com
+  - investors.com
+  - nasdaq.com
+  - reuters.com
+  - eia.gov
+  - sec.gov
+  - federalreserve.gov
+  - bls.gov
+  - bea.gov
+  - treasury.gov
+feeds:
+  - name: CNBC Markets
+    url: https://www.cnbc.com/id/100003114/device/rss/rss.html
+    sector: markets
+  - name: CNBC Technology
+    url: https://www.cnbc.com/id/19854910/device/rss/rss.html
+    sector: tech
+  - name: CNBC Semiconductor News
+    url: https://www.cnbc.com/id/10001147/device/rss/rss.html
+    sector: semiconductors
+  - name: CNBC Retail
+    url: https://www.cnbc.com/id/10000115/device/rss/rss.html
+    sector: retail
+  - name: Yahoo Finance - Markets
+    url: https://finance.yahoo.com/news/rssindex
+    sector: markets
+  - name: Yahoo Finance - Business
+    url: https://finance.yahoo.com/rss/
+    sector: markets
+  - name: Yahoo Finance - Tech
+    url: https://finance.yahoo.com/tech/rss
+    sector: tech
+  - name: Nasdaq - Market News
+    url: https://www.nasdaq.com/feed/rssoutbound?category=Markets
+    sector: markets
+  - name: Nasdaq - Technology
+    url: https://www.nasdaq.com/feed/rssoutbound?category=Technology
+    sector: tech
+  - name: Investor's Business Daily - Markets
+    url: https://www.investors.com/category/market-trend/feed/
+    sector: markets
+  - name: EIA Today in Energy
+    url: https://www.eia.gov/rss/todayinenergy.xml
+    sector: oil_gas
+  - name: SEC EDGAR US GAAP
+    url: https://www.sec.gov/Archives/edgar/usgaap.rss.xml
+    sector: filings
+calendar_feeds:
+  - name: Fed Press Releases
+    url: https://www.federalreserve.gov/feeds/press_all.xml
+  - name: BLS Press Releases
+    url: https://www.bls.gov/feed/bls_latest.rss
+movers_feeds: []
+portfolio:
+  - symbol: AAPL
+    name: Apple
+    keywords: ["Apple", "AAPL"]
+  - symbol: GOOGL
+    name: Google
+    keywords: ["Google", "Alphabet", "GOOGL", "GOOG"]
+  - symbol: TSM
+    name: TSMC
+    keywords: ["TSMC", "Taiwan Semiconductor", "TSM"]
+  - symbol: NVDA
+    name: Nvidia
+    keywords: ["Nvidia", "NVDA"]
+  - symbol: GLD
+    name: GLD
+    keywords: ["GLD"]
+  - symbol: INTC
+    name: Intel
+    keywords: ["Intel", "INTC"]
+  - symbol: PLTR
+    name: Palantir
+    keywords: ["Palantir", "PLTR"]
