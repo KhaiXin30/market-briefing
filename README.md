@@ -73,4 +73,4 @@ The workflow runs daily at 11:00 and 12:00 UTC (covers 7:00am ET across DST). Se
 - Llama summaries use Hugging Face Router with `HF_TOKEN`. Defaults to `meta-llama/Llama-3.2-1B-Instruct:novita`.
 - Mover company blurbs use FMP profiles first, then Wikipedia (company name), then Yahoo Finance.
 - Link verification adds extra HTTP requests and can slow ingestion; enable only if needed.
-- The agent only summarizes RSS titles/snippets for trustworthiness.
+
